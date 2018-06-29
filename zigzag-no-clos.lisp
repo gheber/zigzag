@@ -60,13 +60,13 @@
          (other-connectors (get-connectors other-cell dim))
          (step-back (cdr (assoc (other dir) other-connectors))))
     ;; Make sure to keep consistency if a connection is being replaced
-    (when (not (or (null step-fwd)
-                   (eq step-fwd other-cell)))
+    (unless (or (null step-fwd)
+                (eq step-fwd other-cell))
       (if new
           (error "Connection already exists.")
           (rplacd (assoc (other dir) (get-connectors step-fwd dim)) nil)))
-    (when (not (or (null step-back)
-                   (eq step-back cell)))
+    (unless (or (null step-back)
+                (eq step-back cell))
       (if new
           (error "Connection already exists.")
           (rplacd (assoc dir (get-connectors step-back dim)) nil)))
